@@ -2,7 +2,7 @@ package go1000sms
 
 import (
 	"errors"
-	"gocms/app/go1000sms/go1000smstools"
+	"go1000sms/go1000smstools"
 )
 
 const (
