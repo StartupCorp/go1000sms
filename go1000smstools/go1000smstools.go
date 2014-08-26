@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"fmt"
 )
 
 //==============================================================================
@@ -20,6 +21,8 @@ func Post(myurl string, args map[string]string) (map[string]interface{}, error) 
 			val.Add(k, v)
 		}
 	}
+	
+	fmt.Printf("go1000smstools.Post(): %v, val)
 
 	resp, err := http.Post(myurl, "application/x-www-form-urlencoded", bytes.NewBufferString(val.Encode()))
 	if err != nil {
@@ -43,6 +46,8 @@ func Post(myurl string, args map[string]string) (map[string]interface{}, error) 
 
 //================================================
 func Get(myurl string) (map[string]interface{}, error) {
+	fmt.Printf("go1000smstools.Get(): %v", myurl)
+
 	resp, err := http.Get(myurl)
 	if err != nil {
 		return nil, err
