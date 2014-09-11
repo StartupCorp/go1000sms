@@ -48,6 +48,30 @@ func (go1000sms *Go1000sms) PushMsg(phone, text string) error {
 }
 
 //==============================================================================
+func (go1000sms *Go1000sms) PushGatewayMsg(phone, text string) error {
+	data := make(map[string]string)
+	data["method"] = "push_msg"
+	data["format"] = "json"
+	data["email"] = go1000sms.Email
+	data["password"] = go1000sms.Password
+	data["sender_name"] = "ROUND_SENDER_NAME"
+	data["phone"] = phone
+	data["text"] = text
+
+	resp, err := go1000smstools.Post(SmsApiRoot, data)
+	if err != nil {
+		return err
+	}
+
+	msg := resp["response"].(map[string]interface{})["msg"].(map[string]interface{})
+	if msg["err_code"] != "0" {
+		return errors.New(msg["text"].(string))
+	}
+
+	return nil
+}
+
+//==============================================================================
 func (go1000sms *Go1000sms) GetProfile() (map[string]interface{}, error) {
 	data := make(map[string]string)
 	data["method"] = "get_profile"
