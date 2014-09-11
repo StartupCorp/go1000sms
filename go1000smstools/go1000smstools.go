@@ -22,7 +22,7 @@ func Post(myurl string, args map[string]string) (map[string]interface{}, error) 
 		}
 	}
 	
-	fmt.Printf("go1000smstools.Post(): %v, %v", myurl, val.Encode())
+	fmt.Printf("go1000smstools.Post(): %v, %v\n", myurl, val.Encode())
 
 	resp, err := http.Post(myurl, "application/x-www-form-urlencoded", bytes.NewBufferString(val.Encode()))
 	if err != nil {
@@ -46,7 +46,7 @@ func Post(myurl string, args map[string]string) (map[string]interface{}, error) 
 
 //================================================
 func Get(myurl string) (map[string]interface{}, error) {
-	fmt.Printf("go1000smstools.Get(): %v", myurl)
+	fmt.Printf("go1000smstools.Get(): %v\n", myurl)
 
 	resp, err := http.Get(myurl)
 	if err != nil {
